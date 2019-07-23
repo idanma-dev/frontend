@@ -1,0 +1,66 @@
+<div class="responsive_table">
+  <br />
+  <mat-card>
+    <button mat-raised-button color="primary" routerLink="/create">
+      Create New Product
+    </button>
+    <br /><br />
+    <mat-divider></mat-divider>
+    <br />
+    <mat-table matSort [dataSource]="proucts">
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef>
+          Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.Name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Description">
+        <mat-header-cell *matHeaderCellDef>
+          Description
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.Description }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Amount">
+        <mat-header-cell *matHeaderCellDef>
+          Amount
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.Amount }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="strDate">
+        <mat-header-cell  *matHeaderCellDef>
+          <button mat-raised-button color="color=primary" (click)="sortDate()" >Date</button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> '{{ element.strDate }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="IsPrivate">
+        <mat-header-cell *matHeaderCellDef null>
+          IsPrivate
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.IsPrivate }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell class="lCenter" *matHeaderCellDef>
+          <span style="margin-left: 40px">Actions</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-button color="primary" (click)="editProduct(element.ID)">
+            Edit
+          </button>
+          <button mat-button color="warn" (click)="deleteProduct(element.ID)">
+            Delete
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card>
+</div>

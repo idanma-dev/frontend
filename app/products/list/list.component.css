@@ -1,0 +1,18 @@
+table {
+  width: 100%;
+}
+@media(max-width: 800px) {
+  .responsive_table {
+      overflow-x: auto !important;
+  }
+
+  .mat-table {
+      min-width:800px;
+  }
+}
+.mat-card{
+  min-width:800px;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}

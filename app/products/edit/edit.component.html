@@ -1,0 +1,74 @@
+<div>
+  <br />
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Update Product</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br />
+    <form [formGroup]="updateForm" class="edit-form">
+      <mat-form-field class="field-full-width">
+        <input
+          #Name
+          placeholder="Name"
+          maxlength="100"
+          matInput
+          formControlName="Name"
+        />
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <textarea
+          placeholder="Description"
+          matInput
+          formControlName="Description"
+          #Description
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          type="number"
+          placeholder="Amount"
+          matInput
+          formControlName="Amount"
+          #Amount
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          #strDate
+          [matDatepicker]="picker"
+          formControlName="strDate"
+          placeholder="date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br /><br />
+
+      <mat-checkbox formControlName="IsPrivate" #IsPrivate
+        >IsPrivate</mat-checkbox
+      >
+      <mat-divider></mat-divider>
+      <br /><br />
+      <button mat-raised-button color="accent" routerLink="/list">Back</button>&nbsp;
+      <button
+        type="submit"
+        (click)="
+          updateProduct(
+            Name.value,
+            Description.value,
+            Amount.value,
+            strDate.value,
+            IsPrivate.checked
+          )
+        "
+        [disabled]="updateForm.invalid"
+        mat-raised-button
+        color="primary"
+      >
+        Save
+      </button>
+    </form>
+  </mat-card>
+</div>

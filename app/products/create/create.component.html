@@ -1,0 +1,83 @@
+<div>
+  <br />
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Create A New Product</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br />
+    <form [formGroup]="createForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="Name"
+          maxlength="100"
+          formControlName="Name"
+          #Name
+        />
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <textarea
+          matInput
+          placeholder="Description"
+          formControlName="Description"
+          #Description
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          type="number"
+          placeholder="Amount"
+          min="1"
+          max="999999"
+          formControlName="Amount"
+          #Amount
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          #strDate
+          [matDatepicker]="picker"
+          formControlName="strDate"
+          placeholder="Date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error *ngIf="strDate.invalid">
+          Please enter a valid Date
+        </mat-error>
+      </mat-form-field>
+
+      <br /><br />
+      <mat-checkbox formControlName="IsPrivate" #IsPrivate
+        >IsPrivate</mat-checkbox
+      >
+
+      <mat-divider></mat-divider>
+      <br /><br />
+      <button mat-raised-button color="accent" routerLink="/list">Back</button
+      >&nbsp;
+      <button
+        type="submit"
+        (click)="
+          addProduct(
+            Name.value,
+            Description.value,
+            Amount.value,
+            strDate.value,
+            IsPrivate.checked
+          )
+        "
+        [disabled]="createForm.pristine || createForm.invalid"
+        mat-raised-button
+        color="primary"
+      >
+        Save
+      </button>
+    </form>
+  </mat-card>
+</div>
